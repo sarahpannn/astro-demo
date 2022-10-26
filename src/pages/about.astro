@@ -1,6 +1,29 @@
 ---
-	// heyyyy
+  const pageTitle = "Get to Know Me";
+
+  const identity = {
+    firstName: "Sarah",
+    country: "USA",
+    occupation: "Organic Eater",
+    hobbies: ["Organic Eating, Origami"],
+  };
+
+  const skills = ["Can detect organic produce", "None"];
+
+  const skillColor = "navy";
+  const fontWeight = "bold";
+
 ---
+
+<style define:vars={{skillColor}, {fontWeight}}>
+  h1 {
+    color: purple;
+  }
+  .skill {
+   color: var(--skillColor);
+   font-weight: var(--fontWeight);
+ }
+</style>
 
 <html lang="en">
 	<head>
@@ -8,14 +31,23 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<a href="/">Home</a>
     <a href="/about/">About</a>
     <a href="/blog/">Blog</a>
-		<h1>Yooooooo</h1>
-    <h2>This is me trying to figure out whatever is going on!</h2>
-    <p>Hopefully I will understand how astro works after this.</p>
+		<h1>{pageTitle}</h1>
+    <ul>
+      <li>My name is {identity.firstName}</li>
+      <li>I live in the {identity.country} and my various jobs include {identity.occupation}. </li>
+      {identity.hobbies.length >= 2 && 
+        <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+      }
+  </ul>
+  <p>My skills are:</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
 	</body>
 </html>
